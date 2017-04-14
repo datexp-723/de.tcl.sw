@@ -22272,16 +22272,16 @@
   },
   "project": {
     "restore": {
-      "projectUniqueName": "D:\\dev\\GitHub\\de.tcl.sw\\de.tcl.sw\\de.tcl.sw.UWP\\de.tcl.sw.UWP.csproj",
+      "projectUniqueName": "D:\\dev\\GitHub\\de.tcl.sw\\de.tcl.sw.UWP\\de.tcl.sw.UWP.csproj",
       "projectName": "de.tcl.sw.UWP",
-      "projectPath": "D:\\dev\\GitHub\\de.tcl.sw\\de.tcl.sw\\de.tcl.sw.UWP\\de.tcl.sw.UWP.csproj",
-      "projectJsonPath": "D:\\dev\\GitHub\\de.tcl.sw\\de.tcl.sw\\de.tcl.sw.UWP\\project.json",
+      "projectPath": "D:\\dev\\GitHub\\de.tcl.sw\\de.tcl.sw.UWP\\de.tcl.sw.UWP.csproj",
+      "projectJsonPath": "D:\\dev\\GitHub\\de.tcl.sw\\de.tcl.sw.UWP\\project.json",
       "projectStyle": "ProjectJson",
       "frameworks": {
         "uap10.0": {
           "projectReferences": {
-            "D:\\dev\\GitHub\\de.tcl.sw\\de.tcl.sw\\de.tcl.sw\\de.tcl.sw.csproj": {
-              "projectPath": "D:\\dev\\GitHub\\de.tcl.sw\\de.tcl.sw\\de.tcl.sw\\de.tcl.sw.csproj"
+            "D:\\dev\\GitHub\\de.tcl.sw\\de.tcl.sw\\de.tcl.sw.csproj": {
+              "projectPath": "D:\\dev\\GitHub\\de.tcl.sw\\de.tcl.sw\\de.tcl.sw.csproj"
             }
           }
         }
