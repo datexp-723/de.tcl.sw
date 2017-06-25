@@ -2158,8 +2158,18 @@
           "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Xamarin.Forms.targets": {}
         }
       },
-      "de.tcl.sw/1.0.0": {
+      "de.tcl.common.entities/1.0.0": {
         "type": "project"
+      },
+      "de.tcl.common.gui/1.0.0": {
+        "type": "project"
+      },
+      "de.tcl.sw/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "de.tcl.common.entities": "1.0.0",
+          "de.tcl.common.gui": "1.0.0"
+        }
       }
     },
     "UAP,Version=v10.0/win10-arm": {
@@ -4427,8 +4437,18 @@
           "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Xamarin.Forms.targets": {}
         }
       },
-      "de.tcl.sw/1.0.0": {
+      "de.tcl.common.entities/1.0.0": {
         "type": "project"
+      },
+      "de.tcl.common.gui/1.0.0": {
+        "type": "project"
+      },
+      "de.tcl.sw/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "de.tcl.common.entities": "1.0.0",
+          "de.tcl.common.gui": "1.0.0"
+        }
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
@@ -6735,8 +6755,18 @@
           "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Xamarin.Forms.targets": {}
         }
       },
-      "de.tcl.sw/1.0.0": {
+      "de.tcl.common.entities/1.0.0": {
         "type": "project"
+      },
+      "de.tcl.common.gui/1.0.0": {
+        "type": "project"
+      },
+      "de.tcl.sw/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "de.tcl.common.entities": "1.0.0",
+          "de.tcl.common.gui": "1.0.0"
+        }
       }
     },
     "UAP,Version=v10.0/win10-x64": {
@@ -9013,8 +9043,18 @@
           "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Xamarin.Forms.targets": {}
         }
       },
-      "de.tcl.sw/1.0.0": {
+      "de.tcl.common.entities/1.0.0": {
         "type": "project"
+      },
+      "de.tcl.common.gui/1.0.0": {
+        "type": "project"
+      },
+      "de.tcl.sw/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "de.tcl.common.entities": "1.0.0",
+          "de.tcl.common.gui": "1.0.0"
+        }
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
@@ -11330,8 +11370,18 @@
           "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Xamarin.Forms.targets": {}
         }
       },
-      "de.tcl.sw/1.0.0": {
+      "de.tcl.common.entities/1.0.0": {
         "type": "project"
+      },
+      "de.tcl.common.gui/1.0.0": {
+        "type": "project"
+      },
+      "de.tcl.sw/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "de.tcl.common.entities": "1.0.0",
+          "de.tcl.common.gui": "1.0.0"
+        }
       }
     },
     "UAP,Version=v10.0/win10-x86": {
@@ -13608,8 +13658,18 @@
           "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Xamarin.Forms.targets": {}
         }
       },
-      "de.tcl.sw/1.0.0": {
+      "de.tcl.common.entities/1.0.0": {
         "type": "project"
+      },
+      "de.tcl.common.gui/1.0.0": {
+        "type": "project"
+      },
+      "de.tcl.sw/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "de.tcl.common.entities": "1.0.0",
+          "de.tcl.common.gui": "1.0.0"
+        }
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
@@ -15925,8 +15985,18 @@
           "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Xamarin.Forms.targets": {}
         }
       },
-      "de.tcl.sw/1.0.0": {
+      "de.tcl.common.entities/1.0.0": {
         "type": "project"
+      },
+      "de.tcl.common.gui/1.0.0": {
+        "type": "project"
+      },
+      "de.tcl.sw/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "de.tcl.common.entities": "1.0.0",
+          "de.tcl.common.gui": "1.0.0"
+        }
       }
     }
   },
@@ -22253,6 +22323,16 @@
         "xamarin.forms.2.3.4.224.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
+    },
+    "de.tcl.common.entities/1.0.0": {
+      "type": "project",
+      "path": "../../de.tcl.common/de.tcl.common.entities/de.tcl.common.entities.csproj",
+      "msbuildProject": "../../de.tcl.common/de.tcl.common.entities/de.tcl.common.entities.csproj"
+    },
+    "de.tcl.common.gui/1.0.0": {
+      "type": "project",
+      "path": "../../de.tcl.common/de.tcl.common.gui/de.tcl.common.gui.csproj",
+      "msbuildProject": "../../de.tcl.common/de.tcl.common.gui/de.tcl.common.gui.csproj"
     },
     "de.tcl.sw/1.0.0": {
       "type": "project",
