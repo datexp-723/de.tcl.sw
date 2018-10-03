@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:vm="clr-namespace:de.tcl.sw.ViewModels"
+             xmlns:conv="clr-namespace:de.tcl.common.gui.Converters;assembly=de.tcl.common.gui"
              xmlns:i18n="clr-namespace:de.tcl.sw.MarkupExtensions"
              x:Class="de.tcl.sw.Views.BusPage"
              Title="Bus">
@@ -12,14 +13,26 @@
         <vm:BusPageViewModel />
     </ContentPage.BindingContext>
 
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
     <ContentPage.Content>
         <Grid Margin="10,5,10,5">
 
             <Grid.RowDefinitions>
+                <RowDefinition Height="200" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             
             <Grid.ColumnDefinitions>
@@ -27,38 +40,58 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Image Grid.Row="0" Grid.ColumnSpan="2" Source="{i18n:ImageResource de.tcl.sw.Resources.EvoBus_MB_O_530_(2005).jpg}" />
+            <Image Grid.Row="0" Grid.ColumnSpan="2" Source="{Binding BusImage}" />
 
-            <Label Grid.Row="1" Grid.Column="0" VerticalOptions="Center"
+            <Label Grid.Row="1" Grid.Column="0"
                    Text="Nummer:" FontAttributes="Bold"  />
             <Label Grid.Row="1" Grid.Column="1"
                    Text="{Binding Bus.Number}" />
 
-            <Label Grid.Row="2" Grid.Column="0" VerticalOptions="Center"
+            <Label Grid.Row="2" Grid.Column="0"
                    Text="Typ:" FontAttributes="Bold" />
-            <Label Grid.Row="2" Grid.Column="1" VerticalOptions="Center"
-                   Text="{Binding Bus.Type}" />
+            <Label Grid.Row="2" Grid.Column="1"
+                   Text="{Binding Bus.FormType.Name}" />
 
-            <Label Grid.Row="3" Grid.Column="0" VerticalOptions="Center"
-                   Text="Inspection date:" FontAttributes="Bold" />
+            <Label Grid.Row="3" Grid.Column="0"
+                   Text="Inspection dates:" FontAttributes="Bold" />
 
-            <DatePicker Grid.Row="3" Grid.Column="1" VerticalOptions="CenterAndExpand" Date="{Binding Bus.Inspection.Date}">
-                <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
-                <DatePicker.MinimumDate>
-                    <sys:DateTime x:FactoryMethod="Parse">
-                        <x:Arguments>
-                            <x:String>Jan 1 2000</x:String>
-                        </x:Arguments>
-                    </sys:DateTime>
-                </DatePicker.MinimumDate>
-                <DatePicker.MaximumDate>
-                    <sys:DateTime x:FactoryMethod="Parse">
-                        <x:Arguments>
-                            <x:String>Dec 31 2050</x:String>
-                        </x:Arguments>
-                    </sys:DateTime>
-                </DatePicker.MaximumDate>
-            </DatePicker>
+            <ListView Grid.Row="4" Grid.ColumnSpan="2" ItemsSource="{Binding Bus.Inspections}"
+                      RowHeight="-1" HasUnevenRows="True">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding InspectionType}" />
+                                <DatePicker Grid.Row="0" Grid.Column="1" VerticalOptions="CenterAndExpand" Date="{Binding Date}">
+                                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                                    <DatePicker.MinimumDate>
+                                        <sys:DateTime x:FactoryMethod="Parse">
+                                            <x:Arguments>
+                                                <x:String>Jan 1 2000</x:String>
+                                            </x:Arguments>
+                                        </sys:DateTime>
+                                    </DatePicker.MinimumDate>
+                                    <DatePicker.MaximumDate>
+                                        <sys:DateTime x:FactoryMethod="Parse">
+                                            <x:Arguments>
+                                                <x:String>Dec 31 2050</x:String>
+                                            </x:Arguments>
+                                        </sys:DateTime>
+                                    </DatePicker.MaximumDate>
+                                </DatePicker>
+                            </Grid>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
 
         </Grid>
     </ContentPage.Content>

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:de.tcl.sw.ViewModels"
+             xmlns:behav="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors"
+             x:Class="de.tcl.sw.Views.BusOverviewPage">
+
+    <!-- Bind to the viewmodel! -->
+    <ContentPage.BindingContext>
+        <vm:BusOverviewViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentPage.Content>
+        
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="Busses:" />
+            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Vehicles.Count}" FontAttributes="Bold" />
+
+            <Label Grid.Row="1" Text="Search Number:" />
+            <Entry Grid.Row="1" Grid.Column="1" Text="{Binding SearchEntry}" Keyboard="Numeric" />
+
+            <ListView Grid.Row="2" Grid.ColumnSpan="2" ItemsSource="{Binding Vehicles}" SelectedItem="{Binding SelectedVehicle}"
+                      RowHeight="-1" HasUnevenRows="True" Margin="5,10,5,10" SeparatorVisibility="None">
+
+                <behav:Interaction.Behaviors>
+                    <behav:BehaviorCollection>
+                        <behav:EventToCommand EventName="ItemTapped" Command="{Binding VehicleTappedCommand}" />
+                    </behav:BehaviorCollection>
+                </behav:Interaction.Behaviors>
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Number}" FontAttributes="Bold" FontSize="Medium" VerticalOptions="Center" TextColor="#f35e20" />
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding FormType.Name}" VerticalOptions="Center" FontAttributes="Italic" LineBreakMode="TailTruncation" />
+
+                                <Grid Grid.Row="1" Grid.Column="1" RowSpacing="0" ColumnSpacing="0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition Width="75" />
+                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Text="TÜV:" FontAttributes="Italic" />
+                                    <Label Grid.Column="1" Text="{Binding CountTuevInspections}" FontAttributes="Italic" />
+                                    <Label Grid.Column="2" Text="SP:" FontAttributes="Italic" />
+                                    <Label Grid.Column="3" Text="{Binding CountSpInspections}" FontAttributes="Italic" />
+
+                                </Grid>
+                                
+                            </Grid>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage>

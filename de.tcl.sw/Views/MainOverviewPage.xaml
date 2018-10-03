@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:de.tcl.sw.ViewModels"
+             xmlns:conv="clr-namespace:de.tcl.common.gui.Converters;assembly=de.tcl.common.gui"
+             xmlns:local="clr-namespace:de.tcl.sw.Views"
+             x:Class="de.tcl.sw.Views.MainOverviewPage">
+
+    <!-- Bind to the viewmodel! -->
+    <ContentPage.BindingContext>
+        <vm:MainOverviewViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conv:DateTimeToCultureSpecificString x:Key="DateTimeToCultureSpecificString" />
+            <conv:StatusToVisibilityConverter x:Key="StatusToVisibilityConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <StackLayout Margin="5,5,5,5" >
+
+            <ListView x:Name="vehicleInspections" ItemsSource="{Binding GroupedVehicleInspectionsByYear}"
+                      IsGroupingEnabled="True" GroupDisplayBinding="{Binding Date}"
+                      RowHeight="-1" HasUnevenRows="True" SeparatorVisibility="None">
+
+                <!-- Group Header Customization-->
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Date, Converter={StaticResource DateTimeToCultureSpecificString}, ConverterParameter=yyyy}" TextColor="#f35e20" FontSize="Large" FontAttributes="Bold"
+                                       VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <local:InspectionsByYearView Margin="5,5,5,20"
+                                                         InspectionYear="2017" />
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

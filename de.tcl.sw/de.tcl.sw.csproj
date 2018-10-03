@@ -38,10 +38,17 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\InspectionTypeToStringConverter.cs" />
     <Compile Include="Entities\Bus.cs" />
-    <Compile Include="Entities\GeneralInspection.cs" />
     <Compile Include="Entities\Inspection.cs" />
+    <Compile Include="Entities\InspectionType.cs" />
+    <Compile Include="Entities\SpInspection.cs" />
+    <Compile Include="Entities\TuevInspection.cs" />
     <Compile Include="Entities\Vehicle.cs" />
+    <Compile Include="Entities\VehicleForm.cs" />
+    <Compile Include="Entities\VehicleTypeBendy.cs" />
+    <Compile Include="Entities\VehicleType.cs" />
+    <Compile Include="Entities\VehicleTypeSolo.cs" />
     <Compile Include="Helpers\MessengingCenterAlert.cs" />
     <Compile Include="Helpers\ObservableObject.cs" />
     <Compile Include="Helpers\ObservableRangeCollection.cs" />
@@ -54,17 +61,30 @@
     <Compile Include="Services\MockDataStore.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\BusOverviewViewModel.cs" />
     <Compile Include="ViewModels\BusPageViewModel.cs" />
-    <Compile Include="ViewModels\GroupedVehicelInspectionViewModel.cs" />
+    <Compile Include="ViewModels\GroupedVehiclesViewModel.cs" />
+    <Compile Include="ViewModels\InspectionsByYearViewModel.cs" />
+    <Compile Include="ViewModels\InspectionSelectorViewModel.cs" />
     <Compile Include="ViewModels\ItemDetailViewModel.cs" />
     <Compile Include="ViewModels\ItemsViewModel.cs" />
-    <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\InspectionOverviewViewModel.cs" />
+    <Compile Include="ViewModels\MainOverviewViewModel.cs" />
     <Compile Include="ViewModels\MenuPageViewModel.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BusOverviewPage.xaml.cs">
+      <DependentUpon>BusOverviewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BusPage.xaml.cs">
       <DependentUpon>BusPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InspectionsByYearView.xaml.cs">
+      <DependentUpon>InspectionsByYearView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InspectionSelectorPage.xaml.cs">
+      <DependentUpon>InspectionSelectorPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ItemDetailPage.xaml.cs">
       <DependentUpon>ItemDetailPage.xaml</DependentUpon>
@@ -72,8 +92,11 @@
     <Compile Include="Views\ItemsPage.xaml.cs">
       <DependentUpon>ItemsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="Views\InspectionOverviewPage.xaml.cs">
+      <DependentUpon>InspectionOverviewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainOverviewPage.xaml.cs">
+      <DependentUpon>MainOverviewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
@@ -120,12 +143,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\MainPage.xaml">
+    <EmbeddedResource Include="Views\InspectionOverviewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Views\InspectionSelectorPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\de.tcl.common\de.tcl.common.entities\de.tcl.common.entities.csproj">
       <Project>{91AD65FC-42E0-4791-A449-9955FC55021E}</Project>
@@ -135,6 +163,10 @@
       <Project>{4376d0fb-f8a5-4684-8b3f-fdf4f14348d3}</Project>
       <Name>de.tcl.common.gui</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\de.tcl.common\de.tcl.common.helper\de.tcl.common.helper.csproj">
+      <Project>{6C00591E-D2E6-4A37-A9DD-A5AF72D4BC4B}</Project>
+      <Name>de.tcl.common.helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\de.tcl.common\de.tcl.common.pageNavigation\de.tcl.common.pageNavigation.csproj">
       <Project>{E4F6FCE2-4A6C-4691-9D09-3B275DDE6F63}</Project>
       <Name>de.tcl.common.pageNavigation</Name>
@@ -143,6 +175,9 @@
   <ItemGroup>
     <Reference Include="Corcav.Behaviors, Version=2.3.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Corcav.Behaviors.2.3.7\lib\Corcav.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7\System.ComponentModel.DataAnnotations.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Forms.2.3.4.231\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
@@ -165,6 +200,43 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\EvoBus_MB_O_530_%282005%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MainOverviewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\InspectionsByYearView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\BusOverviewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\EvoBus_MB_O_530_%282007%29.jpg" />
+    <EmbeddedResource Include="Resources\EvoBus_MB_O_530_%282009%29.jpg" />
+    <EmbeddedResource Include="Resources\EvoBus_MB_O_530_%282010_bis_2013%29.jpg" />
+    <EmbeddedResource Include="Resources\EvoBus_MB_O_530_C2_%282017%29.jpg" />
+    <EmbeddedResource Include="Resources\EvoBus_MB_O_530_G_%282004_und_2005%29.jpg" />
+    <EmbeddedResource Include="Resources\EvoBus_MB_O_530_G_%282006%29.jpg" />
+    <EmbeddedResource Include="Resources\EvoBus_MB_O_530_G_%282009%29.jpg" />
+    <EmbeddedResource Include="Resources\EvoBus_MB_O_530_G_%282010,_2011_und_2013%29.jpg" />
+    <EmbeddedResource Include="Resources\EvoBus_MB_O_530_G_C2_%282012_und_2014%29.jpg" />
+    <EmbeddedResource Include="Resources\EvoBus_MB_O_530_LE_%282012_und_2013%29.jpg" />
+    <EmbeddedResource Include="Resources\EvoBus_MB_O_530_LE_C2_%282014_und_2015_und_2016_und_2017%29.jpg" />
+    <EmbeddedResource Include="Resources\MAN_Lions_City_%282008%29.jpg" />
+    <EmbeddedResource Include="Resources\MAN_Lions_City_G_%282008%29.jpg" />
+    <EmbeddedResource Include="Resources\MAN_Lions_City_G_%282015%29.jpg" />
+    <EmbeddedResource Include="Resources\MAN_Lions_City_G_%282016_und_2017%29.jpg" />
+    <EmbeddedResource Include="Resources\MAN_Lions_City_G_%282017_3Tuerer%29.jpg" />
+    <EmbeddedResource Include="Resources\MAN_Lions_City_G_%282017_4Tuerer%29.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.231\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.231\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

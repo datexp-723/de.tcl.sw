@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:de.tcl.sw.ViewModels"
+             xmlns:sf="clr-namespace:Syncfusion.SfSchedule.XForms;assembly=Syncfusion.SfSchedule.XForms"
+             xmlns:conv="clr-namespace:de.tcl.common.gui.Converters;assembly=de.tcl.common.gui"
+             xmlns:conv2="clr-namespace:de.tcl.sw.Converters"
+             xmlns:behav="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors"
+             x:Class="de.tcl.sw.Views.InspectionOverviewPage"
+             BindingContext="{StaticResource InspectionOverviewViewModel}"
+             Title="Vehicle calendar">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:InspectionOverviewViewModel x:Key="InspectionOverviewViewModel" />
+            <conv:DateTimeToCultureSpecificString x:Key="DateTimeToCultureSpecificString" />
+            <conv2:InspectionTypeToStringConverter x:Key="InspectionTypeToStringConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <!--<sf:SfSchedule ScheduleView="MonthView" />-->
+        <!--<StackLayout Margin="10,50,10,10">
+            <Button Text="KICK IT, SEBI :))" Command="{Binding KickItCommand}" />
+            <Label Text="{Binding KickItText}" Margin="0,100,0,0" IsVisible="{Binding HasBeenClicked}"/>
+        </StackLayout>-->
+
+        <StackLayout Margin="5,5,5,5" >
+
+            <ListView x:Name="vehicelInspections" ItemsSource="{Binding GroupedVehicleInspections}" SelectedItem="{Binding SelectedVehicle}"
+                      IsGroupingEnabled="True" GroupDisplayBinding="{Binding Date}"
+                      RowHeight="-1" HasUnevenRows="True" SeparatorVisibility="None">
+
+                <behav:Interaction.Behaviors>
+                    <behav:BehaviorCollection>
+                        <behav:EventToCommand EventName="ItemTapped" Command="{Binding VehicleTappedCommand}" />
+                    </behav:BehaviorCollection>
+                </behav:Interaction.Behaviors>
+                
+                <!-- Group Header Customization-->
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Date, Converter={StaticResource DateTimeToCultureSpecificString}, ConverterParameter=y}" TextColor="#f35e20" FontSize="Large" FontAttributes="Bold"
+                                       VerticalTextAlignment="Center"/>
+                                <Label Text="{Binding Count, StringFormat='({0})'}" Margin="5,0,0,0"
+                                       VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <Grid Margin="10,0,0,0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Row="0" Grid.Column="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="{Binding Number}" FontAttributes="Bold" FontSize="Medium" VerticalOptions="Center" />
+                                    <Label Grid.Column="1" Text="{Binding FormType.Name}" VerticalOptions="Center" FontAttributes="Italic" LineBreakMode="TailTruncation" />
+                                </Grid>
+
+                                <Switch Grid.Row="0" Grid.Column="1" VerticalOptions="Center" />
+
+                            </Grid>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+            
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

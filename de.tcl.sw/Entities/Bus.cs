@@ -8,11 +8,9 @@ namespace de.tcl.sw.Entities
 {
     public class Bus : Vehicle
     {
-
-        public Bus(int number)
-            : base(number)
+        public Bus(VehicleForm formtype, int number)
+            : base(formtype, number)
         {
-
         }
 
     }

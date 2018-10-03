@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:de.tcl.sw.ViewModels"
+             xmlns:conv="clr-namespace:de.tcl.common.gui.Converters;assembly=de.tcl.common.gui"
+             x:Class="de.tcl.sw.Views.InspectionsByYearView">
+
+    <!-- Bind to the viewmodel! -->
+    <ContentView.BindingContext>
+        <vm:InspectionsByYearViewModel />
+    </ContentView.BindingContext>
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <conv:DateTimeToCultureSpecificString x:Key="DateTimeToCultureSpecificString" />
+            <conv:StatusToVisibilityConverter x:Key="StatusToVisibilityConverter" />
+
+            <Style TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,2,0,0" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+        <Grid ColumnSpacing="0" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+
+                <RowDefinition Height="{Binding HasJanInspections, Converter={StaticResource StatusToVisibilityConverter}}" />
+                <RowDefinition Height="{Binding HasFebInspections, Converter={StaticResource StatusToVisibilityConverter}}" />
+                <RowDefinition Height="{Binding HasMarInspections, Converter={StaticResource StatusToVisibilityConverter}}" />
+                <RowDefinition Height="{Binding HasAprInspections, Converter={StaticResource StatusToVisibilityConverter}}" />
+                <RowDefinition Height="{Binding HasMayInspections, Converter={StaticResource StatusToVisibilityConverter}}" />
+                <RowDefinition Height="{Binding HasJunInspections, Converter={StaticResource StatusToVisibilityConverter}}" />
+                <RowDefinition Height="{Binding HasJulInspections, Converter={StaticResource StatusToVisibilityConverter}}" />
+                <RowDefinition Height="{Binding HasAugInspections, Converter={StaticResource StatusToVisibilityConverter}}" />
+                <RowDefinition Height="{Binding HasSepInspections, Converter={StaticResource StatusToVisibilityConverter}}" />
+                <RowDefinition Height="{Binding HasOctInspections, Converter={StaticResource StatusToVisibilityConverter}}" />
+                <RowDefinition Height="{Binding HasNovInspections, Converter={StaticResource StatusToVisibilityConverter}}" />
+                <RowDefinition Height="{Binding HasDecInspections, Converter={StaticResource StatusToVisibilityConverter}}" />
+
+                <!--<RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />-->
+
+                <RowDefinition Height="4" />
+                <RowDefinition Height="Auto" />
+
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="1" Text="TÜV" 
+                       TextColor="#f35e20" FontSize="Large" FontAttributes="Bold" />
+            <Label Grid.Row="0" Grid.Column="2" Text="SP" 
+                       TextColor="#f35e20" FontSize="Large" FontAttributes="Bold" />
+
+            <Label Grid.Row="1" Grid.Column="0" Text="January" />
+            <Label Grid.Row="1" Grid.Column="1" Text="{Binding InspectionsCountJanTuev}" />
+            <Label Grid.Row="1" Grid.Column="2" Text="{Binding InspectionsCountJanSp}" />
+
+            <Label Grid.Row="2" Grid.Column="0" Text="February" />
+            <Label Grid.Row="2" Grid.Column="1" Text="{Binding InspectionsCountFebTuev}" />
+            <Label Grid.Row="2" Grid.Column="2" Text="{Binding InspectionsCountFebSp}" />
+
+            <Label Grid.Row="3" Grid.Column="0" Text="March" />
+            <Label Grid.Row="3" Grid.Column="1" Text="{Binding InspectionsCountMarTuev}" />
+            <Label Grid.Row="3" Grid.Column="2" Text="{Binding InspectionsCountMarSp}" />
+
+            <Label Grid.Row="4" Grid.Column="0" Text="April" />
+            <Label Grid.Row="4" Grid.Column="1" Text="{Binding InspectionsCountAprTuev}" />
+            <Label Grid.Row="4" Grid.Column="2" Text="{Binding InspectionsCountAprSp}" />
+
+            <Label Grid.Row="5" Grid.Column="0" Text="May" />
+            <Label Grid.Row="5" Grid.Column="1" Text="{Binding InspectionsCountMayTuev}" />
+            <Label Grid.Row="5" Grid.Column="2" Text="{Binding InspectionsCountMaySp}" />
+
+            <Label Grid.Row="6" Grid.Column="0" Text="June" />
+            <Label Grid.Row="6" Grid.Column="1" Text="{Binding InspectionsCountJunTuev}" />
+            <Label Grid.Row="6" Grid.Column="2" Text="{Binding InspectionsCountJunSp}" />
+
+            <Label Grid.Row="7" Grid.Column="0" Text="July" />
+            <Label Grid.Row="7" Grid.Column="1" Text="{Binding InspectionsCountJulTuev}" />
+            <Label Grid.Row="7" Grid.Column="2" Text="{Binding InspectionsCountJulSp}" />
+
+            <Label Grid.Row="8" Grid.Column="0" Text="August" />
+            <Label Grid.Row="8" Grid.Column="1" Text="{Binding InspectionsCountAugTuev}" />
+            <Label Grid.Row="8" Grid.Column="2" Text="{Binding InspectionsCountAugSp}" />
+
+            <Label Grid.Row="9" Grid.Column="0" Text="September" />
+            <Label Grid.Row="9" Grid.Column="1" Text="{Binding InspectionsCountSepTuev}" />
+            <Label Grid.Row="9" Grid.Column="2" Text="{Binding InspectionsCountSepSp}" />
+
+            <Label Grid.Row="10" Grid.Column="0" Text="October" />
+            <Label Grid.Row="10" Grid.Column="1" Text="{Binding InspectionsCountOctTuev}" />
+            <Label Grid.Row="10" Grid.Column="2" Text="{Binding InspectionsCountOctSp}" />
+
+            <Label Grid.Row="11" Grid.Column="0" Text="November" />
+            <Label Grid.Row="11" Grid.Column="1" Text="{Binding InspectionsCountNovTuev}" />
+            <Label Grid.Row="11" Grid.Column="2" Text="{Binding InspectionsCountNovSp}" />
+
+            <Label Grid.Row="12" Grid.Column="0" Text="December" />
+            <Label Grid.Row="12" Grid.Column="1" Text="{Binding InspectionsCountDecTuev}" />
+            <Label Grid.Row="12" Grid.Column="2" Text="{Binding InspectionsCountDecSp}" />
+
+            <BoxView Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" HeightRequest="1" Color="Silver" Margin="0,3,0,0" />
+
+            <Label Grid.Row="14" Grid.Column="1" Text="{Binding InspectionsCountTuev}" Margin="0,5,0,0" FontAttributes="Bold" />
+            <Label Grid.Row="14" Grid.Column="2" Text="{Binding InspectionsCountSp}" Margin="0,5,0,0" FontAttributes="Bold" />
+
+        </Grid>
+    </ContentView.Content>
+</ContentView>

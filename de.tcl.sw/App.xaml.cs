@@ -52,8 +52,13 @@ namespace de.tcl.sw
         {
             PageNavigator.XamarinFormsNavigation = xamarinFormsNavigation;
 
+            PageNavigator.RegisterViewMapping(typeof(InspectionSelectorViewModel), typeof(InspectionSelectorPage));
             PageNavigator.RegisterViewMapping(typeof(MenuPageViewModel), typeof(MenuPage));
-            PageNavigator.RegisterViewMapping(typeof(MainPageViewModel), typeof(MainPage));
+
+            PageNavigator.RegisterViewMapping(typeof(MainOverviewViewModel), typeof(MainOverviewPage));
+            PageNavigator.RegisterViewMapping(typeof(InspectionSelectorViewModel), typeof(InspectionSelectorPage));
+            PageNavigator.RegisterViewMapping(typeof(InspectionOverviewViewModel), typeof(InspectionOverviewPage));
+            PageNavigator.RegisterViewMapping(typeof(BusOverviewViewModel), typeof(BusOverviewPage));
             PageNavigator.RegisterViewMapping(typeof(BusPageViewModel), typeof(BusPage));
         }
 

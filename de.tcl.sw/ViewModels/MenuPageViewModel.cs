@@ -67,15 +67,23 @@ namespace de.tcl.sw.ViewModels
         {
             List<MenuCommand> menuItems = new List<MenuCommand>();
 
-            // clear notifications
-            MenuCommand clearNotificationsCommand = new MenuCommand();
-            clearNotificationsCommand.Text = "Calendar view";
-            clearNotificationsCommand.ImageSource = "icon.png";
-            clearNotificationsCommand.CommandToExecute = new RelayCommand(async () =>
+            MenuCommand mainOverviewCommand = new MenuCommand();
+            mainOverviewCommand.Text = "Inspections";
+            mainOverviewCommand.ImageSource = "icon.png";
+            mainOverviewCommand.CommandToExecute = new RelayCommand(async () =>
             {
-                await PageNavigator.NavigateToAsync<MainPageViewModel>();
+                await PageNavigator.NavigateToAsync<InspectionSelectorViewModel>();
             });
-            menuItems.Add(clearNotificationsCommand);
+            menuItems.Add(mainOverviewCommand);
+
+            MenuCommand busOverview = new MenuCommand();
+            busOverview.Text = "Busses";
+            busOverview.ImageSource = "ic_bus.png";
+            busOverview.CommandToExecute = new RelayCommand(async () =>
+            {
+                await PageNavigator.NavigateToAsync<BusOverviewViewModel>();
+            });
+            menuItems.Add(busOverview);
 
             MenuItems = new ObservableRangeCollection<MenuCommand>(menuItems);
         }
